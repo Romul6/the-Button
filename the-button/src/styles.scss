@@ -33,6 +33,19 @@ $the-button-theme: mat.define-light-theme((color: (primary: $the-button-primary,
 
 /* You can add global styles to this file, and also import other style files */
 
+
+// Use the default configuration.
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html * {
+  font-family: 'Montserrat' !important;
+}
+
 html,
 body {
   height: 100%;
@@ -40,5 +53,4 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
