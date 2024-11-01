@@ -1,0 +1,15 @@
+.opponent-info {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+
+    img {
+        height: 40px;
+    }
+
+    span {
+        align-content: center;
+        margin-left: 10px;
+    }
+
+}
