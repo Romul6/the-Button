@@ -1,8 +1,7 @@
 // https://www.color-hex.com/color-palette/1051845
-@import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
 
 button {
-    font-family: 'Montserrat';
+
     font-weight: 500;
 
     background-color: #e3d3a8;
@@ -10,6 +9,9 @@ button {
     border-radius: 6px;
     height: 80px;
     width: 200px;
+
+    transform: scale(1, 1);
+    transition: all 300ms;
 
     .hour {
         font-size: 15px;
@@ -24,6 +26,9 @@ button {
 
     &:hover {
         box-shadow: 3px 3px 6px #8f856a;
+        transform: scale(1.01, 1.01);
+        transition: all 300ms;
+
     }
 
     &.is-booked {

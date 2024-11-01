@@ -2,7 +2,6 @@ import { NgClass, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Input, model, Output, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BookingModal } from '../modal-booking/modal-booking.component';
-import { SubscriptionLoggable } from 'rxjs/internal/testing/SubscriptionLoggable';
 
 @Component({
   selector: 'app-hour',
@@ -27,19 +26,22 @@ export class HourComponentComponent {
 
   }
 
-
   public onClick() {
     const dialogRef = this.dialog.open(BookingModal, {
       data: { name: "Romul", animal: this.animal() },
+      width: '500px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      if (result !== undefined) {
+    const self = this
+    dialogRef.afterClosed().subscribe({
+      next(result: any) {
+        console.log('The dialog was closed');
+        if (result !== undefined) {
 
-        this.animal.set(result);
+          self.animal.set(result);
+        }
       }
-    });
+    })
   }
 
   public getButton(): string {

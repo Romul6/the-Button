@@ -2,8 +2,11 @@
   <p class="hour">
     {{hour.start}} - {{hour.end}}
   </p>
+
   <hr *ngIf="participants">
+
   <p *ngIf="participants" class="rivals">
-    {{participants?.first}} vs {{participants?.second}}
+    {{participants.first}} vs {{participants.second}}
   </p>
+
 </button>
