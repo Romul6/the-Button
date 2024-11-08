@@ -1,28 +1,13 @@
 <h2 mat-dialog-title>Selecciona una oponent</h2>
 
 <mat-dialog-content>
-  <p>Busca un oponent a la llista</p>
-  <mat-form-field style="width: 100%;">
-    <mat-label>Oponenets</mat-label>
-    <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="opponent"
-      [matAutocomplete]="auto">
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      @for (opponent of filteredOpponenets | async ; track opponent.id) {
-      <mat-option [value]="opponent.name">
-        <div class="opponent-info">
-          <img src="https://github.com/romul6.png" />
-          <span>
-            {{opponent.name}}
-          </span>
-        </div>
-      </mat-option>
-      }
-    </mat-autocomplete>
-  </mat-form-field>
+
+  <BTN-searcher>
+  </BTN-searcher>
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="animal()" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="onAccept()">Guardar</button>
 </mat-dialog-actions>
