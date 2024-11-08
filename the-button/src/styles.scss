@@ -31,7 +31,19 @@ $the-button-theme: mat.define-light-theme((color: (primary: $the-button-primary,
 // that you are using.
 @include mat.all-component-themes($the-button-theme);
 
-/* You can add global styles to this file, and also import other style files */
+$red-color: #F25564;
+$yellow-color: #E4B363;
+$blue-color: #2C497F;
+$green-color: #5FAD56;
+$cian-color: #65DEF1;
+
+:root {
+  --button-red-color:#{$red-color};
+  --button-yellow-color:#{$yellow-color};
+  --button-blue-color:#{$blue-color};
+  --button-green-color:#{$green-color};
+  --button-cian-color:#{$cian-color};
+}
 
 
 // Use the default configuration.
