@@ -1,13 +1,12 @@
-import { NgClass, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Input, model, Output, signal } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, input, Input, model, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BookingModal } from '../modal-booking/modal-booking.component';
-import { SubscriptionLoggable } from 'rxjs/internal/testing/SubscriptionLoggable';
 
 @Component({
   selector: 'app-hour',
   standalone: true,
-  imports: [NgClass, NgIf],
+  imports: [NgClass],
   templateUrl: './hour.component.html',
   styleUrl: './hour.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -15,21 +14,19 @@ import { SubscriptionLoggable } from 'rxjs/internal/testing/SubscriptionLoggable
 
 export class HourComponentComponent {
 
-  @Input({ required: true }) hour!: { start: string, end: string }
-  @Input({ required: true }) isBooked!: boolean
-  @Input() participants: { first: string, second: string } | null = null
-
   readonly dialog = inject(MatDialog);
   readonly opponent = signal('');
   readonly name = model('');
 
-  constructor() {
+  hour = input.required<{ start: string, end: string }>()
+  isBooked = input.required<boolean>()
+  participants = input<{ oppo1: string, oppo2: string, oppo3?: string, oppo4?: string } | null>()
 
-  }
+  constructor() { }
 
   public onClick() {
     const dialogRef = this.dialog.open(BookingModal, {
-      data: { name: "Romul", animal: this.opponent() },
+      data: { name: "Romul", animal: this.opponent(), numberParticipants: 4 },
       width: '500px',
     });
 
@@ -43,10 +40,4 @@ export class HourComponentComponent {
     })
   }
 
-  public getButton(): string {
-    if (this.isBooked)
-      return "is-booked"
-    else
-      return ""
-  }
 }

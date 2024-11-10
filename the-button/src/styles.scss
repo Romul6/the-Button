@@ -30,7 +30,7 @@ $the-button-theme: mat.define-light-theme((color: (primary: $the-button-primary,
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($the-button-theme);
-
+// https://coolors.co/palette/f25564-e4b363-2c497f-5fad56-65def1
 $red-color: #F25564;
 $yellow-color: #E4B363;
 $blue-color: #2C497F;
@@ -44,7 +44,6 @@ $cian-color: #65DEF1;
   --button-green-color:#{$green-color};
   --button-cian-color:#{$cian-color};
 }
-
 
 // Use the default configuration.
 @font-face {

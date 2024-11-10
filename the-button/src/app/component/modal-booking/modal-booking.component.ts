@@ -1,18 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef, } from '@angular/material/dialog';
 import { SearcherComponent } from '../searcher/searcher.component';
 import { MatButtonModule } from '@angular/material/button';
-
-export interface DialogData {
-    animal: string;
-    name: string;
-}
-
-export interface idname {
-    id: number;
-    name: string;
-    image?: string;
-}
+import { DialogData } from '../../models/dialogData';
+import { idname } from '../../models/idName';
 
 @Component({
     selector: 'app-modal-booking',
@@ -24,17 +15,25 @@ export interface idname {
 
 export class BookingModal {
 
-    readonly dialogRef = inject(MatDialogRef<BookingModal>);
-    readonly data = inject<DialogData>(MAT_DIALOG_DATA);
+    readonly dialogRef = inject(MatDialogRef<BookingModal>)
+    readonly data = inject<DialogData>(MAT_DIALOG_DATA)
+
+    numberParticipants = new Array(this.data.numberParticipants)
+    participants: Array<idname> = []
 
     constructor() {
     }
 
-    onAccept(): any {
-
+    onOpponentSelected(opponent: idname) {
+        this.participants.push(opponent)
+        // this.dialogRef.close(opponent)
     }
 
-    public onCancel(): void {
+    onSave() {
+        this.dialogRef.close(this.participants)
+    }
+
+    onCancel(): void {
         this.dialogRef.close();
     }
 }

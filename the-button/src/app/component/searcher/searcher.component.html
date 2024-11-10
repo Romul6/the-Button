@@ -1,9 +1,7 @@
 <mat-form-field style="width: 100%;">
 
-  <mat-label>Oponents</mat-label>
-
-  <input type="text" placeholder="Selecciona oponent" aria-label="opponent" matInput [(ngModel)]="opponent"
-    [matAutocomplete]="auto" cdkFocusInitial>
+  <input type="text" aria-placeholder="Selecciona un oponent" aria-label="opponent" matInput [(ngModel)]="opponent"
+    [matAutocomplete]="auto">
 
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
     @for (opponent of filteredOpponenets | async ; track opponent) {

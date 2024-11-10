@@ -1,13 +1,15 @@
-<h2 mat-dialog-title>Selecciona una oponent</h2>
+<h2 mat-dialog-title>Selecciona jugador</h2>
 
 <mat-dialog-content>
+  <Btn-searcher (onOpponentSelected)="onOpponentSelected($event)">
+  </Btn-searcher>
 
-  <BTN-searcher>
-  </BTN-searcher>
-
+  @for (item of participants; track $index) {
+  <p>{{item.name}}</p>
+  }
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="onAccept()">Guardar</button>
+
 </mat-dialog-actions>

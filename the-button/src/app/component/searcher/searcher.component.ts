@@ -1,28 +1,27 @@
-import { AsyncPipe } from '@angular/common';
-import { Component, effect, signal } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { Observable, of } from 'rxjs';
-import { idname } from '../modal-booking/modal-booking.component';
+import { AsyncPipe } from '@angular/common'
+import { Component, effect, output, signal } from '@angular/core'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
+import { MatButtonModule } from '@angular/material/button'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+import { MatSelectModule } from '@angular/material/select'
+import { Observable, of } from 'rxjs'
+import { idname } from '../../models/idName'
 
 @Component({
-  selector: 'BTN-searcher',
+  selector: 'Btn-searcher',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, ReactiveFormsModule, MatSelectModule, MatAutocompleteModule, AsyncPipe],
-
+  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, ReactiveFormsModule, MatSelectModule, MatAutocompleteModule, AsyncPipe],
   templateUrl: './searcher.component.html',
   styleUrl: './searcher.component.scss'
 })
 
 export class SearcherComponent {
 
-  readonly opponent = signal<string | idname>('');
-  public filteredOpponenets!: Observable<idname[]>;
+  readonly opponent = signal<string | idname>('')
+  filteredOpponenets!: Observable<idname[]>
+  onOpponentSelected = output<idname>()
 
   opponents: idname[] = [
     { id: 1, name: "Alejandro" },
@@ -175,13 +174,20 @@ export class SearcherComponent {
     { id: 148, name: "Lucrecia" },
     { id: 149, name: "Cristóbal" },
     { id: 150, name: "Ariadna" },
-  ];
+  ]
 
   constructor() {
     effect(() => {
-      const name = typeof this.opponent() === 'string' ? this.opponent().toString() : (this.opponent() as idname).name;
+      const name = typeof this.opponent() === 'string' ? this.opponent().toString() : (this.opponent() as idname).name
       this.filteredOpponenets = this._filter(name || '')
     })
+
+    effect(() => {
+      if (this.opponent() && typeof (this.opponent()) === 'object') {
+        this.onOpponentSelected.emit(this.opponent() as idname)
+        this.opponent.set('')
+      }
+    }, { allowSignalWrites: true })
   }
 
   public displayFn(user: idname): string {

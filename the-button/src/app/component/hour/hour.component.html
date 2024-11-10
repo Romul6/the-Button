@@ -1,12 +1,13 @@
-<button (click)="onClick()" [ngClass]="getButton()">
+<button (click)="onClick()" [ngClass]="{'is-booked':isBooked()}">
   <p class="hour">
-    {{hour.start}} - {{hour.end}}
+    {{hour().start}} - {{hour().end}}
   </p>
 
-  <hr *ngIf="participants">
-
-  <p *ngIf="participants" class="rivals">
-    {{participants.first}} vs {{participants.second}}
+  @if(participants()){
+  <hr>
+  <p class="rivals">
+    {{participants()?.oppo1}} vs {{participants()?.oppo2}}
   </p>
+  }
 
 </button>
