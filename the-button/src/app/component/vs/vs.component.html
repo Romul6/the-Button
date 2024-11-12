@@ -1,0 +1,27 @@
+<div class="a">
+  <div class="team">
+    <h2>Equip 1</h2>
+    <hr class="rounded">
+    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="team1()" [cdkDropListConnectedTo]="[doneList]"
+      class="example-list" (cdkDropListDropped)="drop($event)" class="participants">
+      @for (item of team1(); track item) {
+      <div class="box" cdkDrag (cdkDragEntered)="drag($event)">{{item.name}}</div>
+      }
+    </div>
+  </div>
+
+  <div class="vs-container">
+    <span class="vs">vs</span>
+  </div>
+
+  <div class="team">
+    <h2>Equip 2</h2>
+    <hr class="rounded">
+    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="team2()" [cdkDropListConnectedTo]="[todoList]"
+      class="example-list" (cdkDropListDropped)="drop($event)" class="participants">
+      @for (item of team2(); track item) {
+      <div class="box" cdkDrag>{{item.name}}</div>
+      }
+    </div>
+  </div>
+</div>
