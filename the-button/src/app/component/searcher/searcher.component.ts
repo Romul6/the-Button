@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common'
-import { Component, effect, output, signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, effect, model, OnInit, output, signal } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
 import { MatButtonModule } from '@angular/material/button'
@@ -14,12 +14,13 @@ import { idname } from '../../models/idName'
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, ReactiveFormsModule, MatSelectModule, MatAutocompleteModule, AsyncPipe],
   templateUrl: './searcher.component.html',
-  styleUrl: './searcher.component.scss'
+  styleUrl: './searcher.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class SearcherComponent {
+export class SearcherComponent implements OnInit {
 
-  readonly opponent = signal<string | idname>('')
+  opponent = model<string | idname>('')
   filteredOpponenets!: Observable<idname[]>
   onOpponentSelected = output<idname>()
 
@@ -182,12 +183,20 @@ export class SearcherComponent {
       this.filteredOpponenets = this._filter(name || '')
     })
 
-    effect(() => {
-      if (this.opponent() && typeof (this.opponent()) === 'object') {
-        this.onOpponentSelected.emit(this.opponent() as idname)
-        this.opponent.set('')
+    setTimeout(() => {
+      this.onOpponentSelected.emit({ id: 1, name: "Alejandro" })
+      this.onOpponentSelected.emit({ id: 2, name: "Sofía" })
+      this.onOpponentSelected.emit({ id: 3, name: "Daniel" })
+      this.onOpponentSelected.emit({ id: 4, name: "Valentina" })
+    }, 1000);
+  }
+
+  ngOnInit(): void {
+    this.opponent.subscribe((value) => {
+      if (value && typeof (value) === 'object') {
+        this.onOpponentSelected.emit(value as idname)
       }
-    }, { allowSignalWrites: true })
+    })
   }
 
   public displayFn(user: idname): string {
