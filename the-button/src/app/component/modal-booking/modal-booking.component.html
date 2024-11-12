@@ -4,12 +4,16 @@
   <Btn-searcher (onOpponentSelected)="onOpponentSelected($event)">
   </Btn-searcher>
 
-  @for (item of participants; track $index) {
+  <!-- @for (item of participants; track $index) {
   <p>{{item.name}}</p>
-  }
+  } -->
+
+  <Btn-vs [team1]="team1" [team2]="team2" [max4Team]="2"></Btn-vs>
+
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button (click)="onSave()" mat-dialog-close>Guardar</button>
 
 </mat-dialog-actions>
