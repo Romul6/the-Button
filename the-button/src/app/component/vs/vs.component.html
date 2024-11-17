@@ -1,30 +1,35 @@
-<div class="container">
+vs <div class="row justify-content-md-between justify-content-center text-center mx-0">
 
-  <div class="row">
-    <div class="col-sm-5">
-      <h2>Equip 1</h2>
-      <hr class="rounded">
-      <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="team1()" [cdkDropListConnectedTo]="[doneList]"
-        class="example-list" (cdkDropListDropped)="drop($event)" class="participants">
-        @for (item of team1(); track item) {
-        <div class="box" cdkDrag (cdkDragEntered)="drag($event)">{{item.name}}</div>
-        }
+  <div class="col-md-5 team">
+    <h3>Equip 1</h3>
+    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="team1()" [cdkDropListConnectedTo]="[doneList]"
+      class="example-list" (cdkDropListDropped)="drop($event)" class="participants">
+      @for (item of team1(); track item) {
+      <div class="box" cdkDrag (cdkDragEntered)="drag($event)">
+        {{item.name}}
+        <mat-icon (click)="onDeletePlayer(team1,item)">close</mat-icon>
       </div>
+      }
     </div>
 
-    <div class="col-sm-2 align-self-center">
-      <span class="vs">vs</span>
-    </div>
+  </div>
 
-    <div class="col-sm-5">
-      <h2>Equip 2</h2>
-      <hr class="rounded">
-      <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="team2()" [cdkDropListConnectedTo]="[todoList]"
-        class="example-list" (cdkDropListDropped)="drop($event)" class="participants">
-        @for (item of team2(); track item) {
-        <div class="box" cdkDrag>{{item.name}}</div>
-        }
+  <div class="col-md-2 d-flex align-self-center justify-content-center my-4">
+    <p class="vs">vs</p>
+  </div>
+
+  <div class="col-md-5 team">
+    <h3>Equip 2</h3>
+
+    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="team2()" [cdkDropListConnectedTo]="[todoList]"
+      class="example-list" (cdkDropListDropped)="drop($event)" class="participants">
+      @for (item of team2(); track item) {
+      <div class="box" cdkDrag (cdkDragEntered)="drag($event)">
+        {{item.name}}
+        <mat-icon (click)="onDeletePlayer(team2,item)">close</mat-icon>
       </div>
+      }
     </div>
+
   </div>
 </div>
