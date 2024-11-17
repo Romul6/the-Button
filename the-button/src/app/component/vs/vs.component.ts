@@ -16,6 +16,8 @@ export class VsComponent {
   team2 = input.required<idname[]>()
   max4Team = input.required<number>()
 
+  private currentIndexSelected = 0
+
   drop(event: CdkDragDrop<idname[]>) {
 
     if (event.previousContainer === event.container) {
@@ -23,7 +25,7 @@ export class VsComponent {
     } else {
       if (event.container.data.length >= this.max4Team()) {
         transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-        transferArrayItem(event.container.data, event.previousContainer.data, 0, 0);
+        transferArrayItem(event.container.data, event.previousContainer.data, this.currentIndexSelected, 0);
 
       } else {
         transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
@@ -32,7 +34,8 @@ export class VsComponent {
   }
 
   drag(started: any) {
-    console.log(started);
+    this.currentIndexSelected = started.currentIndex
+
   }
 
 }
