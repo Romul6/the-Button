@@ -27,7 +27,7 @@ export class HourComponentComponent {
   public onClick() {
     const dialogRef = this.dialog.open(BookingModal, {
       data: { name: "Romul", animal: this.opponent(), numberParticipants: 4 },
-      width: '600px',
+      width: '80%',
     });
 
     const self = this
