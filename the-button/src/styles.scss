@@ -1,19 +1,23 @@
 @use '@angular/material' as mat;
+
 @include mat.core();
 
 @import "bootstrap/scss/bootstrap-grid";
+@import "bootstrap/scss/bootstrap-utilities";
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
 $the-button-primary: mat.define-palette(mat.$indigo-palette);
 $the-button-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $the-button-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
+
+// @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+$the-button-primary: mat.define-palette(mat.$indigo-palette);
+$the-button-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$the-button-warn: mat.define-palette(mat.$red-palette);
+
 $the-button-theme: mat.define-light-theme((color: (primary: $the-button-primary,
         accent: $the-button-accent,
         warn: $the-button-warn,
@@ -25,6 +29,7 @@ $the-button-theme: mat.define-light-theme((color: (primary: $the-button-primary,
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($the-button-theme);
+
 // https://coolors.co/palette/f25564-e4b363-2c497f-5fad56-65def1
 $red-color: #F25564;
 $yellow-color: #E4B363;
@@ -38,6 +43,20 @@ $cian-color: #65DEF1;
   --button-blue-color:#{$blue-color};
   --button-green-color:#{$green-color};
   --button-cian-color:#{$cian-color};
+
+  --color-bg-modal: #F7FDF4;
+  --color-bg-team1: #DFFCC0;
+  --color-bg-team2: #D8F8B7;
+  --color-bg-input: #FFFFFF;
+  --color-btn-cancel: #F3F3F3;
+  --color-btn-save: #C3E88D;
+  --color-vs-bg: #EAF6DE;
+  --color-text-dark: #2E2E2E;
+  --color-text-light: #FFFFFF;
+  --color-accent-dark: #97B565;
+  --color-accent-light: #F8FFDD;
+  --box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  --border-radius: 14px;
 }
 
 // Use the default configuration.
@@ -49,7 +68,7 @@ $cian-color: #65DEF1;
 }
 
 html * {
-  font-family: 'Montserrat' !important;
+  font-family: 'Montserrat';
 }
 
 html,
@@ -59,4 +78,8 @@ body {
 
 body {
   margin: 0;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: var(--color-bg-modal) !important;
 }
