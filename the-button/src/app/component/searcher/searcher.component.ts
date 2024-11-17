@@ -25,10 +25,10 @@ export class SearcherComponent implements OnInit {
   onOpponentSelected = output<idname>()
 
   opponents: idname[] = [
-    { id: 1, name: "Alejandro" },
-    { id: 2, name: "Sofía" },
-    { id: 3, name: "Daniel" },
-    { id: 4, name: "Valentina" },
+    { id: 1, name: "Alejandro Mateo" },
+    { id: 2, name: "Sofía Isabella" },
+    { id: 3, name: "Daniel Lucas" },
+    { id: 4, name: "Valentina Martina" },
     { id: 5, name: "Mateo" },
     { id: 6, name: "Camila" },
     { id: 7, name: "Lucas" },
@@ -184,10 +184,10 @@ export class SearcherComponent implements OnInit {
     })
 
     setTimeout(() => {
-      this.onOpponentSelected.emit({ id: 1, name: "Alejandro" })
-      this.onOpponentSelected.emit({ id: 2, name: "Sofía" })
-      this.onOpponentSelected.emit({ id: 3, name: "Daniel" })
-      this.onOpponentSelected.emit({ id: 4, name: "Valentina" })
+      this.onOpponentSelected.emit(this.opponents[0])
+      this.onOpponentSelected.emit(this.opponents[1])
+      this.onOpponentSelected.emit(this.opponents[2])
+      this.onOpponentSelected.emit(this.opponents[3])
     }, 1000);
   }
 
