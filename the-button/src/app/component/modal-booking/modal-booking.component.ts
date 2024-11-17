@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, effect, inject, input, model, signal } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef, } from '@angular/material/dialog';
 import { SearcherComponent } from '../searcher/searcher.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,25 +22,25 @@ export class BookingModal {
     numberParticipants = new Array(this.data.numberParticipants)
     participants: Array<idname> = []
 
-    team1: Array<idname> = []
-    team2: Array<idname> = []
+    team1 = signal<idname[]>([])
+    team2 = signal<idname[]>([])
 
     constructor() {
     }
 
     onOpponentSelected(opponent: idname) {
-        if (this.team1.length + this.team2.length >= this.data.numberParticipants)
+        if (this.team1().length + this.team2().length >= this.data.numberParticipants)
             return
 
         var r = this.data.numberParticipants / 2
-        if (this.team1.length < r)
-            this.team1.push(opponent)
+        if (this.team1().length < r)
+            this.team1().push(opponent)
         else
-            this.team2.push(opponent)
+            this.team2().push(opponent)
     }
 
     onSave() {
-        this.dialogRef.close({ team1: this.team1, team2: this.team2 })
+        this.dialogRef.close({ team1: this.team1(), team2: this.team2() })
     }
 
     onCancel(): void {

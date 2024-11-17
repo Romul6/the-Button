@@ -184,10 +184,10 @@ export class SearcherComponent implements OnInit {
     })
 
     setTimeout(() => {
-      this.onOpponentSelected.emit(this.opponents[0])
-      this.onOpponentSelected.emit(this.opponents[1])
-      this.onOpponentSelected.emit(this.opponents[2])
-      this.onOpponentSelected.emit(this.opponents[3])
+      // this.onOpponentSelected.emit(this.opponents[0])
+      // this.onOpponentSelected.emit(this.opponents[1])
+      // this.onOpponentSelected.emit(this.opponents[2])
+      // this.onOpponentSelected.emit(this.opponents[3])
     }, 1000);
   }
 
@@ -195,6 +195,10 @@ export class SearcherComponent implements OnInit {
     this.opponent.subscribe((value) => {
       if (value && typeof (value) === 'object') {
         this.onOpponentSelected.emit(value as idname)
+        setTimeout(() => {
+          this.opponent.set('')
+
+        }, 0);
       }
     })
   }
