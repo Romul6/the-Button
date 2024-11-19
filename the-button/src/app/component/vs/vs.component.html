@@ -2,12 +2,12 @@
 
   <div class="col-md-5 team">
     <h3>Equip 1</h3>
-    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="team1()" [cdkDropListConnectedTo]="[doneList]"
-      class="example-list" (cdkDropListDropped)="drop($event)" class="participants">
+    <div cdkDropList #t1="cdkDropList" [cdkDropListData]="team1()" [cdkDropListConnectedTo]="[t2]" class="example-list"
+      (cdkDropListDropped)="drop($event)" class="participants">
       @for (item of team1(); track item) {
-      <div class="box" cdkDrag (cdkDragEntered)="drag($event)">
+      <div class="box" cdkDrag>
         {{item.name}}
-        <mat-icon (click)="onDeletePlayer(team1,item)">close</mat-icon>
+        <!-- <mat-icon class="icon" (click)="onDeletePlayer(team1,item)">close</mat-icon> -->
       </div>
       }
     </div>
@@ -21,12 +21,12 @@
   <div class="col-md-5 team">
     <h3>Equip 2</h3>
 
-    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="team2()" [cdkDropListConnectedTo]="[todoList]"
-      class="example-list" (cdkDropListDropped)="drop($event)" class="participants">
+    <div cdkDropList #t2="cdkDropList" [cdkDropListData]="team2()" [cdkDropListConnectedTo]="[t1]" class="example-list"
+      (cdkDropListDropped)="drop($event)" class="participants">
       @for (item of team2(); track item) {
-      <div class="box" cdkDrag (cdkDragEntered)="drag($event)">
+      <div class="box" cdkDrag>
         {{item.name}}
-        <mat-icon (click)="onDeletePlayer(team2,item)">close</mat-icon>
+        <!-- <mat-icon class="icon" (click)="onDeletePlayer(team2,item)">close</mat-icon> -->
       </div>
       }
     </div>
