@@ -167,11 +167,12 @@
 </style>
 
 <main class="main">
+
+  <Btn-day-hour-divider [minutesDivider]="15"></Btn-day-hour-divider>
+
   <div style="display: flex; flex-direction: column; gap: 5px;">
-    <app-hour [hour]="{start:'10:00',end: '11:00'}" [isBooked]="true"
-      [participants]="{ oppo1: 'Romul', oppo2: 'Joan' }"></app-hour>
-    <app-hour [hour]="{start:'10:00',end: '11:00'}" [isBooked]="true"
-      [participants]="{ oppo1: 'Francesc', oppo2: 'Toni' }"></app-hour>
-    <app-hour [hour]="{start:'10:00',end: '11:00'}" [isBooked]="false"></app-hour>
+    @for (hour of hours; track $index) {
+    <app-hour [hour]="hour.hour" [isBooked]="hour.isBooked"></app-hour>
+    }
   </div>
 </main>
