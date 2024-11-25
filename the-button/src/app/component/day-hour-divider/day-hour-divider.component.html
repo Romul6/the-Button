@@ -1,0 +1,14 @@
+<div (pointerdown)="onPointerDown($event)" (pointermove)="onPointerMove($event)" (pointerup)="onPointerUp($event)"
+  class="day-hour-container">
+
+  @for (hour of hoursMap | keyvalue; track $index) {
+  <div class="day-hour-hour-box">
+    @for (hourDivided of hour.value ; track $index) {
+    <div class="day-hour-hour-divided selectable">
+      {{hourDivided.start |date :'HH:mm'}} -
+      {{hourDivided.end |date :'HH:mm'}}
+    </div>
+    }
+  </div>
+  }
+</div>
