@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common'
-import { ChangeDetectionStrategy, Component, effect, model, OnInit, output, signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, effect, model, OnInit, output } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
 import { MatButtonModule } from '@angular/material/button'
@@ -197,7 +197,6 @@ export class SearcherComponent implements OnInit {
         this.onOpponentSelected.emit(value as idname)
         setTimeout(() => {
           this.opponent.set('')
-
         }, 0);
       }
     })

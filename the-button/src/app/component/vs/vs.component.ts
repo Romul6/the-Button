@@ -1,5 +1,5 @@
-import { Component, EventEmitter, input, model, ModelFunction, ModelSignal } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag, CdkDropList, CdkDragStart, } from '@angular/cdk/drag-drop';
+import { Component, input, model, ModelSignal } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag, CdkDropList, } from '@angular/cdk/drag-drop';
 import { idname } from '../../models/idName';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,31 +19,33 @@ export class VsComponent {
 
   max4Team = input.required<number>()
 
-  private currentIndexSelected = 0
-
   drop(event: CdkDragDrop<idname[]>) {
 
-    if (event.previousContainer === event.container) {
+    const sameContainer = event.previousContainer === event.container
+    if (sameContainer) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      if (event.container.data.length >= this.max4Team()) {
-        transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-        setTimeout(() => {
-          transferArrayItem(event.container.data, event.previousContainer.data, 0, this.currentIndexSelected);
-        }, 5000);
-
-      } else {
-        transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-      }
+      return
     }
+
+    transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+
+    if (event.container.data.length >= this.max4Team()) {
+      let index = 0
+      while (event.currentIndex === index) {
+        index++
+      }
+
+      transferArrayItem(event.container.data, event.previousContainer.data, index, event.previousIndex);
+      return
+    }
+
   }
 
-  drag(started: any) {
-    this.currentIndexSelected = started.currentIndex
-  }
+  protected onDeletePlayer(list: ModelSignal<idname[]>, player: idname, event: any) {
 
-  protected onDeletePlayer(list: ModelSignal<idname[]>, event: any) {
-    list.update(v => v.filter(a => a.id != event.id))
+    event.target.parentElement.classList.add('delete')
+    setTimeout(() => {
+      list.update(v => v.filter(a => a.id != player.id))
+    }, 300);
   }
-
 }

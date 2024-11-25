@@ -7,7 +7,7 @@
       @for (item of team1(); track item) {
       <div class="box" cdkDrag>
         {{item.name}}
-        <!-- <mat-icon class="icon" (click)="onDeletePlayer(team1,item)">close</mat-icon> -->
+        <mat-icon class="icon" (click)="onDeletePlayer(team1,item,$event)">close</mat-icon>
       </div>
       }
     </div>
@@ -26,7 +26,7 @@
       @for (item of team2(); track item) {
       <div class="box" cdkDrag>
         {{item.name}}
-        <!-- <mat-icon class="icon" (click)="onDeletePlayer(team2,item)">close</mat-icon> -->
+        <mat-icon class="icon" (click)="onDeletePlayer(team2,item,$event)">close</mat-icon>
       </div>
       }
     </div>

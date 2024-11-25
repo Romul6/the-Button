@@ -12,7 +12,7 @@ import { BookingModal } from '../modal-booking/modal-booking.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class HourComponentComponent {
+export class HourComponent {
 
   readonly dialog = inject(MatDialog);
   readonly opponent = signal('');
@@ -26,14 +26,12 @@ export class HourComponentComponent {
 
   public onClick() {
     const dialogRef = this.dialog.open(BookingModal, {
-      data: { name: "Romul", animal: this.opponent(), numberParticipants: 4 },
-      width: '80%',
+      data: { name: "Romul", animal: this.opponent(), numberParticipants: 4 }, width: '80%', minHeight: 430
     });
 
     const self = this
     dialogRef.afterClosed().subscribe({
       next(result: any) {
-        console.log(result);
         if (result !== undefined)
           self.opponent.set(result);
       }
