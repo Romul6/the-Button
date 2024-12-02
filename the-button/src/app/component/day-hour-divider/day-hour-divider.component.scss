@@ -59,10 +59,14 @@
     border: 1px solid red;
 }
 
-.drag-select {
-    background-color: blue;
+.drag-selection-hover {
+    background-color: pink;
 }
 
-.intersected {
+.drag-selection-on-selection {
     background-color: rgba(59, 47, 49, 0.356);
+}
+
+.drag-selection-selected {
+    background-color: blue;
 }

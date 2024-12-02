@@ -1,10 +1,11 @@
-<div (pointerdown)="onPointerDown($event)" (pointermove)="onPointerMove($event)" (pointerup)="onPointerUp($event)"
+<div drag-selection
+  [dragStyles]="{dragSelectionHover:'drag-selection-hover',dragSelectionOnSelection:'drag-selection-on-selection',dragSelectionSelected:'drag-selection-selected'}"
   class="day-hour-container">
 
   @for (hour of hoursMap | keyvalue; track $index) {
   <div class="day-hour-hour-box">
     @for (hourDivided of hour.value ; track $index) {
-    <div class="day-hour-hour-divided selectable">
+    <div drag-selectables class="day-hour-hour-divided">
       {{hourDivided.start |date :'HH:mm'}} -
       {{hourDivided.end |date :'HH:mm'}}
     </div>
