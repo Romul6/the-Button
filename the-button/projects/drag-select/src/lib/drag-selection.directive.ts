@@ -86,8 +86,7 @@ export class DraggableDirective implements AfterViewInit {
         const a = document.querySelectorAll('.' + this.dragStyles()?.dragSelectionOnSelection)
 
         a.forEach((e) => e.classList.add(this.dragStyles()?.dragSelectionSelected))
-
-        console.log(document.querySelectorAll('.' + this.dragStyles()?.dragSelectionOnSelection));
+        console.log(a);
     }
 
     checkSelected(div: any) {
