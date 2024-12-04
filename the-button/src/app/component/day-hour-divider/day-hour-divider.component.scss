@@ -68,5 +68,13 @@
 }
 
 .drag-selection-selected {
-    background-color: blue;
+    background-color: var(--button-red-color);
+
+    &:first-child {
+        border-top: 4px solid black;
+    }
+
+    &:last-child {
+        border-bottom: 4px solid black;
+    }
 }
